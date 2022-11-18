@@ -19,5 +19,4 @@ jobs:
       
     - name: Push the Docker image
       echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-      
+      docker push ayhans/docker-ghrc-apache2-alpine-01:latest      
