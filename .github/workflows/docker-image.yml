@@ -20,6 +20,9 @@ jobs:
       run: |
        d=$(date +%Y-%m-%d--%H-%M-%S)
        tag=$d
+       run: echo "GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+       echo $GITHUB_ENV
+       
        docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:latest
     - name: Push the Docker image
       run: |
