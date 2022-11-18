@@ -18,17 +18,15 @@ jobs:
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
     - name: Build the Docker image
       run: |
-       d=$(date +%Y-%m-%d--%H-%M-%S)
-       tag=$d
-       echo $GITHUB_SHA
-       echo $GITHUB_ENV
        echo $(date +%Y-%m-%d_%H-%M-%S) > tagdate.txt
        cat tagdate.txt
-       cat $GITHUB_ENV
-       
+       echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
+       echo $GITHUB_STEP_SUMMARY
+
        docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:latest
     - name: Push the Docker image
       run: |
         cat tagdate.txt
+        echo $GITHUB_STEP_SUMMARY
         docker push ayhans/docker-image-apache2-alpine-01:$(date +%Y-%m-%d_%H-%M-%S)
 
