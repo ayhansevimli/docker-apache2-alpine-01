@@ -24,5 +24,6 @@ jobs:
        docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:$tag
     - name: Push the Docker image
       run: |
-       echo "tag=" $tag
+        echo "tag=" $tag
+        echo "${GITHUB_REF##*/}"
         docker push ayhans/docker-image-apache2-alpine-01:$tag
