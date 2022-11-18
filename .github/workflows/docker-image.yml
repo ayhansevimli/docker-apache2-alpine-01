@@ -27,9 +27,6 @@ jobs:
     - name: Get tag
       id: tag
       uses: ayhansevimli/docker-image-apache2-alpine-01
-      with:
-        # Optionally strip `v` prefix
-        strip_v: true
     - name: Use tag
       run: echo ${{steps.tag.outputs.tag}}
            echo $GITHUB_ENV
