@@ -20,4 +20,4 @@ jobs:
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     - name: Push the Docker image
       run: |
-        docker push ayhans/docker-ghrc-apache2-alpine-01      
+        docker push ayhans/docker-ghrc-apache2-alpine-01:latest     
