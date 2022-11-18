@@ -26,7 +26,7 @@ jobs:
 
     - name: Get tag
       id: tag
-      uses: ayhansevimli/docker-image-apache2-alpine-01@v1
+      uses: ayhansevimli/docker-image-apache2-alpine-01
       with:
         # Optionally strip `v` prefix
         strip_v: true
