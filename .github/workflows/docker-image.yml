@@ -25,7 +25,7 @@ jobs:
        echo "$GITHUB_CONTEXT"
        echo ${{ github.sha }}
        echo ${{ github.ref }}
-       
+       echo "date = "$(date +%s)
 
        docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:latest
     - name: Push the Docker image
@@ -37,6 +37,8 @@ jobs:
         echo $GITHUB_CONTEXT
         echo ${{ github.sha }}
         echo ${{ github.ref }}
+        echo "date = "$(date +%s)
+
     - name: Get the version
       id: vars
       run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
