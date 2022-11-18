@@ -20,33 +20,22 @@ jobs:
     - name: Set Tag Value with Date
       id: step_one
       run: |
-        #echo "action_state="$(date +%Y-%m-%d_%H-%M-%S) >> $GITHUB_ENV
-        echo "action_state="$(date +%Y-%m-%d_%H-%M-%S) >> $TAG_VALUE
+        echo "action_state="$(date +%Y-%m-%d_%H-%M-%S) >> $GITHUB_ENV
     - name: Use the value
       id: step_two
       run: |
-        echo "${{ env.action_state }}" # This will output 'yellow'
+        echo "${{ env.action_state }}" # This will output 'date'
 
     - name: Build the Docker image
       run: |
-       echo $(date +%Y-%m-%d_%H-%M-%S) > tagdate.txt
-       cat tagdate.txt
-
-       echo "------------------------------------"
-       echo $(date +%Y-%m-%d_%H-%M-%S) > $tagdate2
-       echo $tagdate2
        echo "------------------------------------"
        echo "${{ env.action_state }}"       
        echo "------------------------------------"
        echo "------------------------------------"
-       echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
-       echo $GITHUB_STEP_SUMMARY
 
-
-       docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:latest
+       docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:${{ env.action_state }}
     - name: Push the Docker image
       run: |
-        cat tagdate.txt
-        echo $GITHUB_STEP_SUMMARY
-        docker push ayhans/docker-image-apache2-alpine-01:$(date +%Y-%m-%d_%H-%M-%S)
+       echo "${{ env.action_state }}"       
+       docker push ayhans/docker-image-apache2-alpine-01:${{ env.action_state }}
 
