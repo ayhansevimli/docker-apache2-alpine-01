@@ -16,6 +16,16 @@ jobs:
         DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       run: |
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
+
+    - name: Set the value
+      id: step_one
+      run: |
+        echo "action_state=yellow" >> $GITHUB_ENV
+    - name: Use the value
+      id: step_two
+      run: |
+        echo "${{ env.action_state }}" # This will output 'yellow'
+
     - name: Build the Docker image
       run: |
        echo $(date +%Y-%m-%d_%H-%M-%S) > tagdate.txt
