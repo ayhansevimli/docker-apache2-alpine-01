@@ -24,7 +24,7 @@ jobs:
        echo "${GITHUB_REF##*/}"
        echo "$GITHUB_CONTEXT"
        echo ${{ github.sha }}
-       echo $github.sha
+       echo ${{ github.ref }}
        
 
        docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:latest
@@ -36,7 +36,7 @@ jobs:
         echo $GITHUB_ENV
         echo $GITHUB_CONTEXT
         echo ${{ github.sha }}
-        echo $github.sha
+        echo ${{ github.ref }}
 
 
         docker push ayhans/docker-image-apache2-alpine-01:latest
