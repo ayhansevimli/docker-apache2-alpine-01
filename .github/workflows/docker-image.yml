@@ -36,7 +36,9 @@ jobs:
        echo $(date +%Y-%m-%d_%H-%M-%S) > $tagdate2
        echo $tagdate2
        echo "------------------------------------"
-       
+       echo "${{ env.action_state }}"       
+       echo "------------------------------------"
+       echo "------------------------------------"
        echo "This is the lead in sentence for the list" >> $GITHUB_STEP_SUMMARY
        echo $GITHUB_STEP_SUMMARY
 
