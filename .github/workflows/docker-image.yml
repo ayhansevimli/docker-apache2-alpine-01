@@ -22,6 +22,7 @@ jobs:
        tag=$d
        echo "tag=" $tag
        echo "${GITHUB_REF##*/}"
+       echo "$GITHUB_CONTEXT"
 
        docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:latest
     - name: Push the Docker image
@@ -30,5 +31,6 @@ jobs:
         echo "${GITHUB_REF##*/}"
         echo ${GITHUB_REF#refs/*/}
         echo $GITHUB_ENV
+        echo $GITHUB_CONTEXT
         docker push ayhans/docker-image-apache2-alpine-01:latest
 
