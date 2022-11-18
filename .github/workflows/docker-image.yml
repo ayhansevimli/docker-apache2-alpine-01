@@ -17,11 +17,11 @@ jobs:
       run: |
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
 
-    - name: Set the value
+    - name: Set Tag Value with Date
       id: step_one
       run: |
-        #echo "action_state=yellow" >> $GITHUB_ENV
-        echo "action_state="$(date +%Y-%m-%d_%H-%M-%S) >> $GITHUB_ENV
+        #echo "action_state="$(date +%Y-%m-%d_%H-%M-%S) >> $GITHUB_ENV
+        echo "action_state="$(date +%Y-%m-%d_%H-%M-%S) >> $TAG_VALUE
     - name: Use the value
       id: step_two
       run: |
