@@ -27,3 +27,7 @@ jobs:
         echo "tag=" $tag
         echo "${GITHUB_REF##*/}"
         docker push ayhans/docker-image-apache2-alpine-01:$tag
+    - name: GitHub Tag Name example
+      run: |
+        echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
+        echo "Tag name from github.ref_name: ${{  github.ref_name }}"
