@@ -30,7 +30,7 @@ jobs:
     - name: Push the Docker image
       run: |
         cat 01.txt
-        echo "12345" > 01.txt
+        echo $(date +%Y-%m-%d_%H-%M-%S) > 01.txt
         cat 01.txt
         docker push ayhans/docker-image-apache2-alpine-01:$(date +%Y-%m-%d_%H-%M-%S)
 
