@@ -19,7 +19,7 @@ jobs:
     - name: Build the Docker image
       run: |
        d=$(date +%Y-%m-%d--%H-%M-%S)
-       tag=d
+       tag=$d
        docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:$tag
     - name: Push the Docker image
       run: |
