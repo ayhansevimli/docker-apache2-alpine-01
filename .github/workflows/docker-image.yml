@@ -21,6 +21,8 @@ jobs:
        d=$(date +%Y-%m-%d--%H-%M-%S)
        tag=$d
        echo "tag=" $tag
+       echo "${GITHUB_REF##*/}"
+
        docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:latest
     - name: Push the Docker image
       run: |
