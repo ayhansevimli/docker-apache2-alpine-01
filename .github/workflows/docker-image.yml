@@ -20,25 +20,8 @@ jobs:
       run: |
        d=$(date +%Y-%m-%d--%H-%M-%S)
        tag=$d
-       echo "tag=" $tag
-       echo "${GITHUB_REF##*/}"
-       echo "$GITHUB_CONTEXT"
-       echo ${{ github.sha }}
-       echo ${{ github.ref }}
-       echo "date = "$(date +%Y-%m-%d_%H-%M-%S)
-
        docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:latest
     - name: Push the Docker image
       run: |
-        echo "tag=" $tag
-        echo "${GITHUB_REF##*/}"
-        echo ${GITHUB_REF#refs/*/}
-        echo $GITHUB_ENV
-        echo $GITHUB_CONTEXT
-        echo ${{ github.sha }}
-        echo ${{ github.ref }}
-        echo "date = "$(date +%Y-%m-%d_%H-%M-%S)
-
-
-        docker push ayhans/docker-image-apache2-alpine-01:latest
+        docker push ayhans/docker-image-apache2-alpine-01:$(date +%Y-%m-%d_%H-%M-%S)
 
