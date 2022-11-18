@@ -21,16 +21,18 @@ jobs:
        d=$(date +%Y-%m-%d--%H-%M-%S)
        tag=$d
        echo "tag=" $tag
+       echo $GITHUB_ENV
        docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:$tag
 
     - name: Get tag
       id: tag
-      uses: ayhansevimli/action-get-tag@v1
+      uses: ayhansevimli/docker-image-apache2-alpine-01@v1
       with:
         # Optionally strip `v` prefix
         strip_v: true
     - name: Use tag
       run: echo ${{steps.tag.outputs.tag}}
+           echo $GITHUB_ENV
 
 
 
@@ -40,5 +42,6 @@ jobs:
         echo "tag=" $tag
         echo "${GITHUB_REF##*/}"
         echo ${GITHUB_REF#refs/*/}
+        echo $GITHUB_ENV
         docker push ayhans/docker-image-apache2-alpine-01:$tag
 
