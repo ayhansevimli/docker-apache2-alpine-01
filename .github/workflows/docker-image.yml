@@ -22,11 +22,19 @@ jobs:
        tag=$d
        echo "tag=" $tag
        docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:$tag
-    - name: GitHub Tag Name example
-      run: |
-        echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
-        echo "Tag name from github.ref_name: ${{  github.ref_name }}"
-        echo ${GITHUB_REF#refs/*/}
+
+    - name: Get tag
+      id: tag
+      uses: ayhansevimli/action-get-tag@v1
+      with:
+        # Optionally strip `v` prefix
+        strip_v: true
+    - name: Use tag
+      run: echo ${{steps.tag.outputs.tag}}
+
+
+
+
     - name: Push the Docker image
       run: |
         echo "tag=" $tag
