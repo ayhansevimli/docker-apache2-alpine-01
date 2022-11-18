@@ -18,7 +18,8 @@ jobs:
         docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_TOKEN
     - name: Build the Docker image
       run: |
-       docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:latest
+       d=$(date +%Y-%m-%d--%H-%M-%S--%N)
+       docker build . --file Dockerfile --tag ayhans/docker-image-apache2-alpine-01:$d
     - name: Push the Docker image
       run: |
-        docker push ayhans/docker-image-apache2-alpine-01:latest
+        docker push ayhans/docker-image-apache2-alpine-01:$d
